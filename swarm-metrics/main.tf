@@ -6,11 +6,11 @@ resource "docker_network" "metrics" {
 }
 
 resource "docker_image" "influxdb" {
-  name = "influxdb"
+  name = "influxdb:latest"
 }
 
 resource "docker_image" "grafana" {
-  name = "grafana/grafana"
+  name = "grafana/grafana:latest"
 }
 
 resource "docker_container" "influxdb" {
