@@ -5,18 +5,8 @@ resource "docker_network" "metrics" {
   name = "${var.docker_network_name}"
 }
 
-resource "docker_image" "influxdb" {
-  name = "influxdb:latest"
-}
-
-resource "docker_image" "grafana" {
-  name = "grafana/grafana:latest"
-}
-
 resource "docker_container" "influxdb" {
   name = "${var.docker_containers_prefix}influxdb"
-
-  depends_on = ["docker_image.influxdb"]
 
   image    = "influxdb"
   networks = ["${docker_network.metrics.name}"]
@@ -40,8 +30,6 @@ resource "docker_container" "influxdb" {
 
 resource "docker_container" "grafana" {
   name = "${var.docker_containers_prefix}grafana"
-
-  depends_on = ["docker_image.grafana"]
 
   image    = "grafana/grafana"
   networks = ["${docker_network.metrics.name}"]
