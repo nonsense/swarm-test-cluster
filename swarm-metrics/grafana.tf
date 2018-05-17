@@ -25,3 +25,9 @@ resource "grafana_dashboard" "swarm" {
 
   depends_on = ["grafana_data_source.influxdb_metrics"]
 }
+
+resource "grafana_dashboard" "geth" {
+  config_json = "${file("dashboards/geth.json")}"
+
+  depends_on = ["grafana_data_source.influxdb_metrics"]
+}
