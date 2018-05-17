@@ -5,6 +5,14 @@ resource "docker_network" "metrics" {
   name = "${var.docker_network_name}"
 }
 
+resource "docker_image" "influxdb" {
+  name = "influxdb"
+}
+
+resource "docker_image" "grafana" {
+  name = "grafana/grafana"
+}
+
 resource "docker_container" "influxdb" {
   name = "${var.docker_containers_prefix}influxdb"
 
