@@ -14,8 +14,8 @@ resource "grafana_data_source" "influxdb_metrics" {
   depends_on = ["docker_container.grafana"]
 }
 
-resource "grafana_dashboard" "metrics_eval" {
-  config_json = "${file("dashboards/metrics_eval.json")}"
+resource "grafana_dashboard" "ldbstore" {
+  config_json = "${file("dashboards/ldbstore.json")}"
 
   depends_on = ["grafana_data_source.influxdb_metrics"]
 }
